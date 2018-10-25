@@ -119,16 +119,6 @@ class User(ORMBase):
 
     roles = relationship("Role", secondary=_USER_ROLES, backref="users")
 
-    def has_permission(self, permission):
-        for role in self.roles:
-            # 如果拥有超级管理员角色名称，拥有权限
-            if role.name == settings.ADMIN_ROLE_NAME:
-                return True
-            for perm in role.permissions:
-                if perm.id == permission.id:
-                    return True
-        return False
-
 
 # 第一次创建 Role 表时创建一些默认角色
 @event.listens_for(Role.__table__, 'after_create')
