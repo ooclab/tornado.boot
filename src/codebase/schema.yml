@@ -196,35 +196,6 @@ paths:
 
 definitions:
 
-  Status:
-    type: string
-    description: |
-      接口请求结果
-
-      - `success` 表示成功
-      - 其他表示错误
-    default: "success"
-
-  ObjectCreateSucces:
-    type: object
-    properties:
-      status:
-        $ref: '#/definitions/Status'
-      id:
-        type: string
-        format: uuid
-        description: 成功创建的权限ID
-
-  DefaultSuccessResponse:
-    type: object
-    required:
-    - status
-    properties:
-      status:
-        type: string
-        description: 接口调用结果
-        default: "success"
-
   DefaultErrorResponse:
     type: object
     required:
@@ -267,28 +238,6 @@ definitions:
         type: string
         description: 角色描述
 
-  RoleWithPermissions:
-    type: object
-    required:
-    - id
-    - name
-    - permissions
-    properties:
-      id:
-        type: string
-        format: uuid
-        description: 角色ID
-      name:
-        type: string
-        description: 角色名称（全局唯一）
-      summary:
-        type: string
-        description: 角色描述
-      permissions:
-        type: array
-        items:
-          $ref: '#/definitions/PermissionSimple'
-
   Role:
     type: object
     description: 角色
@@ -320,24 +269,6 @@ definitions:
         type: string
         format: date-time
         description: 更新时间
-
-  PermissionSimple:
-    type: object
-    required:
-    - name
-    properties:
-      id:
-        type: string
-        format: uuid
-        description: 权限ID
-      name:
-        type: string
-        description: 权限名称（全局唯一）
-        maxLength: 64
-      summary:
-        type: string
-        description: 权限描述
-        maxLength: 256
 
   PageFilter:
     type: object
