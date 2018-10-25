@@ -22,12 +22,9 @@ Start a service-oriented project rapidly
 ### 创建项目副本
 
 ```
-git clone https://github.com/ooclab/tornado.boot.git
-mv tornado.boot YOUR_PROJECT_NAME
+git clone https://github.com/ooclab/tornado.boot.git YOUR_PROJECT_NAME
 cd YOUR_PROJECT_NAME
-vim .git/config
-# 设置 `remote "origin"` 为你自己的 git 仓库地址
-# 启动开发
+git remote set-url origin YOUR_GIT_REPO_ACCESS
 ```
 
 ### 开发
