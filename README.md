@@ -1,5 +1,8 @@
 # tornado.boot
 
+[![Build Status](https://travis-ci.com/ooclab/tornado.boot.svg?branch=master)](https://travis-ci.com/ooclab/tornado.boot)
+[![codecov](https://codecov.io/gh/ooclab/tornado.boot/branch/master/graph/badge.svg)](https://codecov.io/gh/ooclab/tornado.boot)
+
 Start a service-oriented project rapidly
 
 
