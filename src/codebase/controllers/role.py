@@ -3,10 +3,7 @@
 from tornado.web import HTTPError
 
 from codebase.web import APIRequestHandler
-from codebase.models import (
-    Permission,
-    Role
-)
+from codebase.models import Role
 from codebase.utils.sqlalchemy.page import get_list
 
 
