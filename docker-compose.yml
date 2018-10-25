@@ -1,0 +1,23 @@
+version: '3'
+services:
+    api:
+        build:
+          context: .
+          dockerfile: Dockerfile.dev
+        tty: true
+        command: bash
+        environment:
+            DB_URI: "postgresql://root:password@postgres:5432/mydb"
+        ports:
+            - "3000:3000"
+        volumes:
+            - "./:/work"
+
+    postgres:
+        image: postgres:10.5
+        environment:
+            POSTGRES_DB: mydb
+            POSTGRES_USER: root
+            POSTGRES_PASSWORD: password
+        # volumes:
+        #     - "./pg-data:/var/lib/postgresql"
