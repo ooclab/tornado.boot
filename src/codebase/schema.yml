@@ -25,7 +25,7 @@ tags:
 
 paths:
 
-  "/":
+  "/_spec":
     get:
       tags:
       - default
