@@ -12,7 +12,7 @@ class Application(tornado.web.Application):
         tornado_settings = {
             "xsrf_cookies": False,
             "gzip": True,
-            "debug": settings.DEBUG,
+            "debug": settings.DEBUG == "true",
             "secret_key": settings.SECRET_KEY,
         }
 

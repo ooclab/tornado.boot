@@ -18,8 +18,8 @@ from codebase.models import User
 class BaseHandler(tornado.web.RequestHandler):
     def set_default_headers(self):
         self.set_header("Access-Control-Allow-Origin", "*")
-        self.set_header("Access-Control-Allow-Headers", "x-requested-with")
-        self.set_header("Access-Control-Allow-Methods", "POST, GET, OPTIONS")
+        self.set_header("Access-Control-Allow-Headers", "*")
+        self.set_header("Access-Control-Allow-Methods", "*")
 
     def options(self):
         # no body
@@ -27,7 +27,7 @@ class BaseHandler(tornado.web.RequestHandler):
         self.finish()
 
 
-if settings.DEBUG:
+if settings.CORS == "true":
     MainBaseHandler = BaseHandler
 else:
     MainBaseHandler = tornado.web.RequestHandler
