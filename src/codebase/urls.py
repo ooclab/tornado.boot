@@ -7,7 +7,7 @@ from codebase.controllers import (
 
 
 HANDLERS = [
-    url(r"/_spec",
+    url(r"/",
         default.SpecHandler),
 
     url(r"/_health",
