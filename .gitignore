@@ -103,3 +103,5 @@ venv.bak/
 # mypy
 .mypy_cache/
 pg-data
+nose2-junit.xml
+
