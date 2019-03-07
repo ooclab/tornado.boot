@@ -16,6 +16,7 @@ from codebase.models import User
 
 
 class BaseHandler(tornado.web.RequestHandler):
+
     def set_default_headers(self):
         self.set_header("Access-Control-Allow-Origin", "*")
         self.set_header("Access-Control-Allow-Headers", "*")
@@ -34,6 +35,7 @@ else:
 
 
 class APIRequestHandler(MainBaseHandler):
+
     def get_current_user(self):
         uid = self.request.headers.get("X-User-Id")
         if not uid:
@@ -92,17 +94,16 @@ class APIRequestHandler(MainBaseHandler):
             d["exc_info"] = str(exception)
 
         if reason:
-            self.set_status(status_code, reason)
             if message:
-                self.fail(error=reason, message=message)
+                self.fail(error=reason, message=message, status=status_code)
             else:
-                self.fail(error=reason)
+                self.fail(error=reason, status=status_code)
         else:
-            self.set_status(status_code)
             if message:
-                self.fail(error="exception", message=message, data=d)
+                self.fail(
+                    error="exception", message=message, status=status_code, data=d)
             else:
-                self.fail(errors="exception", data=d)
+                self.fail(errors="exception", status=status_code, data=d)
 
     def log_exception(self, typ, value, tb):
         """Override to customize logging of uncaught exceptions.
