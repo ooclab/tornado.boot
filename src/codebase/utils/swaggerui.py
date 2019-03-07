@@ -21,5 +21,8 @@ class Api:
     def validate_object(self, object_spec, value):
         validate_object(self.spec, object_spec, value)
 
+    def validate_200_body(self, op, value):
+        self.validate_object(op.op_spec["responses"]["200"]["schema"], value)
+
 
 api = Api()
