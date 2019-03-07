@@ -56,7 +56,7 @@ paths:
       summary: 获取所有角色列表
       parameters:
       - $ref: '#/parameters/PageSize'
-      - $ref: '#/parameters/CurrentPage'
+      - $ref: '#/parameters/Page'
       - $ref: '#/parameters/ASC'
       - name: sort_by
         in: query
@@ -335,7 +335,7 @@ parameters:
     - "0"
     description: 表示是否使用升序排列，默认为降序
 
-  CurrentPage:
+  Page:
     name: current_page
     in: query
     type: integer
