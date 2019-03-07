@@ -19,7 +19,7 @@ def get_list(hdr, q, default_sort_by="id", allow_sort_by=None, model=None):
     q = q.order_by(asc(sb) if is_asc else desc(sb))
 
     # pagination
-    page_size = int(hdr.get_argument("page_size", settings.PAGE_SIZE))
+    page_size = int(hdr.get_argument("page_size", int(settings.PAGE_SIZE)))
     current_page = int(hdr.get_argument("page", 1))
     start = (current_page - 1) * page_size
     stop = current_page * page_size
