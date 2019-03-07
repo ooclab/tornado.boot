@@ -18,20 +18,20 @@ class HealthTestCase(BaseTestCase):
 
 
 class SpecTestCase(BaseTestCase):
-    """GET /_spec - SwaggerUI 文档
+    """GET / - SwaggerUI 文档
     """
 
     def test_spec(self):
         """返回正确
         """
 
-        resp = self.fetch("/_spec")
+        resp = self.fetch("/")
         self.assertEqual(resp.code, 200)
 
     def test_validate_swaggerui(self):
         """验证 SwaggerUI 文档是否有效
         """
-        resp = self.fetch("/_spec")
+        resp = self.fetch("/")
         spec_json = safe_load(resp.body)
         validator = get_validator(spec_json)
         validator.validate_spec(spec_json)
