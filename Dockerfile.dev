@@ -5,8 +5,12 @@ ENV PYTHONIOENCODING=utf-8
 ENV PYTHONPATH=/work
 ENV PATH /usr/local/bin:$PATH
 
-COPY requirements.dev.txt /requirements.txt
+COPY requirements.txt /
+COPY pip.conf /etc/pip.conf
 RUN pip3 install -r /requirements.txt && rm /requirements.txt
+
+COPY requirements.dev.txt /
+RUN pip3 install -r /requirements.dev.txt && rm /requirements.dev.txt
 
 WORKDIR /work
 VOLUME /data
