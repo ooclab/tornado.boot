@@ -42,7 +42,9 @@ class APIRequestHandler(MainBaseHandler):
             raise HTTPError(403, reason="no-x-user-id")
         user = self.db.query(User).filter_by(uuid=uid).first()
         if not user:
-            raise HTTPError(403, reason="fake-user-id")
+            user = User(uuid=uid)
+            self.db.add(user)
+            self.db.commit()
         return user
 
     def fail(self, error="fail", errors=None, status=400, **kwargs):
