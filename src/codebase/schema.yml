@@ -336,7 +336,7 @@ parameters:
     description: 表示是否使用升序排列，默认为降序
 
   Page:
-    name: current_page
+    name: page
     in: query
     type: integer
     format: int
