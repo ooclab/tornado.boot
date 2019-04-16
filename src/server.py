@@ -44,6 +44,8 @@ def sig_handler(server, sig, _):
 
 def main():
 
+    dbc.wait_for_it()
+
     # sync database
     if settings.SYNC_DATABASE == "true":
         import_module(settings.MODELS_MODULE)

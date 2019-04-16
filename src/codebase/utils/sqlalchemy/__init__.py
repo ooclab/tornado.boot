@@ -2,9 +2,13 @@
 """SQLAlchemy Help Method
 """
 
+import time
+import logging
+
 from sqlalchemy import create_engine
 from sqlalchemy.orm import scoped_session, sessionmaker
 from sqlalchemy.ext.declarative import declarative_base
+from sqlalchemy.exc import OperationalError, InterfaceError, ProgrammingError
 
 from eva.conf import settings
 
@@ -21,22 +25,32 @@ class DBC:
 
     def __init__(self):
         self.db_uri = settings.DB_URI
-        self.dbengine = create_engine(self.db_uri, echo=False)
-        session_factory = sessionmaker(bind=self.dbengine)
+        self.engine = create_engine(self.db_uri, echo=False)
+        session_factory = sessionmaker(bind=self.engine)
         self.session = scoped_session(session_factory)
-
-    def remove(self):
-        self.session.remove()
 
     def create_all(self):
         # TODO: session.remove() 保证不会死锁
         self.session.remove()
-        ORMBase.metadata.create_all(self.dbengine)
+        ORMBase.metadata.create_all(self.engine)
 
     def drop_all(self):
         # TODO: session.remove() 保证不会死锁
         self.session.remove()
-        ORMBase.metadata.drop_all(self.dbengine)
+        ORMBase.metadata.drop_all(self.engine)
+
+    def wait_for_it(self):
+        """wait postgres is online
+        """
+        while True:
+            try:
+                self.engine.execute('SELECT 1')
+                break
+            except (OperationalError, InterfaceError, ProgrammingError):
+                # InterfaceError 是 db 还没启动，拒绝连接的异常
+                # ProgrammingError the database system is starting up
+                time.sleep(1)
+                logging.info("wait database is online")
 
 
 dbc = DBC()

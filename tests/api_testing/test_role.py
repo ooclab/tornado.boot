@@ -3,7 +3,6 @@ import uuid
 from eva.utils.time_ import utc_rfc3339_string
 
 from codebase.models import Permission, Role, User
-from codebase.utils.sqlalchemy import dbc
 from codebase.utils.swaggerui import api
 
 from .base import (
@@ -217,8 +216,6 @@ class RoleDeleteTestCase(RoleBaseTestCase):
         body = get_body_json(resp)
         self.assertEqual(resp.code, 200)
         self.validate_default_success(body)
-
-        dbc.remove()
 
         role = self.db.query(Role).filter_by(uuid=role_id).first()
         self.assertIs(role, None)
