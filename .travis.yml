@@ -9,5 +9,5 @@ script:
   - pylint src tests
   - flake8
   - ./scripts/fix_nose2.sh
-  - nose2 -v --with-coverage --coverage-report xml
+  - nose2 -v --coverage-report xml
   - codecov
