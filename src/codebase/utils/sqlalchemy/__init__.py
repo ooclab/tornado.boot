@@ -46,11 +46,11 @@ class DBC:
             try:
                 self.engine.execute('SELECT 1')
                 break
-            except (OperationalError, InterfaceError, ProgrammingError):
+            except (OperationalError, InterfaceError, ProgrammingError) as e:
                 # InterfaceError 是 db 还没启动，拒绝连接的异常
                 # ProgrammingError the database system is starting up
                 time.sleep(1)
-                logging.info("wait database is online")
+                print(f"wait database ({settings.DB_URI}) is online: {e}")
 
 
 dbc = DBC()
