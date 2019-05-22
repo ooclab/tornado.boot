@@ -3,10 +3,9 @@ python:
   - "3.7-dev"  # 3.7 development branch
 # command to install dependencies
 install:
-  - pip install -r requirements.dev.txt
+  - pip install -r requirements.dev.txt -r requirements.txt
 # command to run tests
 script:
-  - export PYTHONPATH=$PYTHONPATH:$(pwd)/src
   - pylint src tests
   - flake8
   - ./scripts/fix_nose2.sh
