@@ -7,7 +7,7 @@ services:
         tty: true
         command: bash
         environment:
-            DB_URI: "postgresql://root:password@postgres:5432/mydb"
+            DB_URI: "postgresql+pg8000://root:password@postgres:5432/mydb"
         ports:
             - "3000:3000"
         volumes:
