@@ -1,6 +1,7 @@
+dist: xenial   # required for Python >= 3.7
 language: python
 python:
-  - "3.7-dev"  # 3.7 development branch
+  - "3.7"
 # command to install dependencies
 install:
   - pip install -r requirements.dev.txt -r requirements.txt
@@ -9,5 +10,5 @@ script:
   - pylint src tests
   - flake8
   - ./scripts/fix_nose2.sh
-  - nose2 -v --coverage-report xml
+  - nose2 -v --with-coverage --coverage-report xml
   - codecov

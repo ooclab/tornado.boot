@@ -14,7 +14,7 @@ services:
             - "./:/work"
 
     postgres:
-        image: postgres:10.5
+        image: postgres:11
         environment:
             POSTGRES_DB: mydb
             POSTGRES_USER: root
