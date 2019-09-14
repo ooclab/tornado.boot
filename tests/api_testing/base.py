@@ -6,7 +6,6 @@ import uuid
 import logging
 
 import tornado.testing
-from eva.conf import settings
 
 from codebase.utils.sqlalchemy import dbc
 from codebase.utils.swaggerui import api
