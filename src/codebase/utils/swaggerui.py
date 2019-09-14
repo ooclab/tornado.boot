@@ -15,7 +15,7 @@ class Api:
         # TODO: eva.conf.settings.ROOT_PATH 有 bug, 显示的是 python3 的路径
         curdir = os.path.dirname(__file__)
         spec_path = os.path.join(curdir, "../../codebase/schema.yml")
-        self.spec_dict = yaml.load(open(spec_path))
+        self.spec_dict = yaml.safe_load(open(spec_path))
         self.spec = Spec.from_dict(self.spec_dict)
 
     def validate_object(self, object_spec, value):
