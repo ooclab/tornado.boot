@@ -8,8 +8,8 @@ services:
         command: bash
         environment:
             DB_URI: "postgresql+pg8000://root:password@postgres:5432/mydb"
-        ports:
-            - "3000:3000"
+        #ports:
+        #    - "3000:3000"
         volumes:
             - "./:/work"
 
