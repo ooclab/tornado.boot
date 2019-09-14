@@ -1,5 +1,6 @@
 # pylint: disable=R0903
 
+import os
 import json
 import uuid
 import logging
@@ -64,7 +65,7 @@ class BaseTestCase(tornado.testing.AsyncHTTPTestCase):
         return f"  {SECOND_ARROW} {second}"
 
     def get_app(self):
-        settings.DEBUG = False
+        os.environ["DEBUG"] = "false"
         return make_app()
 
     @classmethod
