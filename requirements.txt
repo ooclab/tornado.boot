@@ -1,4 +1,4 @@
-tornado==6.0.3
+tornado==6.3.2
 pyeva==3.0.1
 sqlalchemy==1.3.8
 sqlalchemy-utils==0.34.2
